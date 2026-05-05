@@ -1,0 +1,244 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ------------------------------ */
+/* 1. Primitive Tokens */
+/* ------------------------------ */
+@theme inline {
+  /* base */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  /* surfaces */
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  /* primary */
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  /* secondary */
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  /* muted */
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  /* accent */
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  /* state */
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+
+  /* ui */
+  --color-border: var(--border);
+  --color-input: var(--input);
+
+  /* focus */
+  --color-ring: var(--ring);
+
+  /* typography */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-md: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+/* ------------------------------ */
+/* 2. Semantic Tokens */
+/* ------------------------------ */
+:root {
+  color-scheme: light;
+
+  --radius: 0.75rem;
+
+  /* base */
+  --background: oklch(0.978 0.005 335);
+  --foreground: oklch(0.24 0.02 350);
+
+  /* surfaces */
+  --card: oklch(0.992 0.006 340);
+  --card-foreground: oklch(0.24 0.02 350);
+
+  --popover: oklch(0.995 0.005 338);
+  --popover-foreground: oklch(0.24 0.02 350);
+
+  /* primary */
+  --primary: oklch(0.9 0.05 350);
+  --primary-foreground: oklch(0.24 0.02 350);
+
+  /* secondary */
+  --secondary: oklch(0.95 0.018 340);
+  --secondary-foreground: oklch(0.3 0.03 350);
+
+  /* muted */
+  --muted: oklch(0.955 0.01 338);
+  --muted-foreground: oklch(0.51 0.02 348);
+
+  /* accent */
+  --accent: oklch(0.86 0.09 352);
+  --accent-foreground: oklch(0.24 0.02 350);
+
+  /* state */
+  --destructive: oklch(0.63 0.2 20);
+  --destructive-foreground: oklch(0.98 0 0);
+
+  --success: oklch(0.76 0.12 150);
+  --success-foreground: oklch(0.98 0 0);
+
+  /* ui */
+  --border: oklch(0.9 0.012 343);
+  --input: oklch(0.93 0.014 342);
+
+  /* focus */
+  --ring: oklch(0.78 0.09 350);
+
+  /* layout */
+  --page-max-width: 1280px;
+  --page-padding: clamp(16px, 2vw, 24px);
+}
+
+/* ------------------------------ */
+/* 3. Dark Mode */
+/* ------------------------------ */
+.dark {
+  color-scheme: dark;
+
+  /* base */
+  --background: oklch(0.21 0.015 345);
+  --foreground: oklch(0.96 0.008 340);
+
+  /* surfaces */
+  --card: oklch(0.26 0.02 345);
+  --card-foreground: oklch(0.96 0.008 340);
+
+  --popover: oklch(0.28 0.02 345);
+  --popover-foreground: oklch(0.96 0.008 340);
+
+  /* primary */
+  --primary: oklch(0.82 0.08 350);
+  --primary-foreground: oklch(0.24 0.02 350);
+
+  /* secondary */
+  --secondary: oklch(0.33 0.025 345);
+  --secondary-foreground: oklch(0.96 0.008 340);
+
+  /* muted */
+  --muted: oklch(0.3 0.015 345);
+  --muted-foreground: oklch(0.76 0.02 340);
+
+  /* accent */
+  --accent: oklch(0.45 0.08 350);
+  --accent-foreground: oklch(0.97 0.01 340);
+
+  /* state */
+  --destructive: oklch(0.68 0.19 20);
+  --destructive-foreground: oklch(0.98 0 0);
+
+  --success: oklch(0.7 0.14 150);
+  --success-foreground: oklch(0.98 0 0);
+
+  /* ui */
+  --border: oklch(1 0.01 340 / 14%);
+  --input: oklch(1 0.01 340 / 18%);
+
+  /* focus */
+  --ring: oklch(0.74 0.1 350);
+}
+
+/* ------------------------------ */
+/* 4. Base (Reset + Defaults) */
+/* ------------------------------ */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    @apply font-sans;
+  }
+
+  body {
+    min-height: 100dvh;
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  #root {
+    min-height: 100dvh;
+  }
+
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+  }
+
+  :where(
+    button,
+    [href],
+    input,
+    select,
+    textarea,
+    summary,
+    [role="button"],
+    [tabindex]
+  ):focus-visible {
+    outline-offset: 2px;
+  }
+}
+
+/* ------------------------------ */
+/* 5. Custom Utilities */
+/* ------------------------------ */
+@utility container-page {
+  width: 100%;
+  max-width: var(--page-max-width);
+  margin-inline: auto;
+  padding-inline: var(--page-padding);
+}
+
+@utility page-shell {
+  min-height: 100dvh;
+  background-color: var(--background);
+  color: var(--foreground);
+}
