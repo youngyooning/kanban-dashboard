@@ -1,4 +1,5 @@
 export { AuthDomainError, getAuthErrorMessage } from "./api/auth-errors";
+export { useLoginMutation, useLogoutMutation, useSignUpMutation } from "./api/auth-queries";
 export {
   type LoginFormValues,
   loginSchema,
