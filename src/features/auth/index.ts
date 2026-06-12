@@ -1,5 +1,11 @@
 export { AuthDomainError, getAuthErrorMessage } from "./api/auth-errors";
 export {
+  type LoginFormValues,
+  loginSchema,
+  type SignUpFormValues,
+  signUpSchema,
+} from "./model/auth-schema";
+export {
   type AuthErrorCode,
   type AuthFailure,
   type AuthSessionUser,
