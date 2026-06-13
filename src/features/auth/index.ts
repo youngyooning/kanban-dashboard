@@ -4,6 +4,12 @@ export { LoginForm } from "./components/LoginForm";
 export { SignupForm } from "./components/SignupForm";
 export { useAuth } from "./hooks/use-auth";
 export {
+  type AuthRedirectOptions,
+  createAuthRedirectOptions,
+  type InternalRedirectPath,
+  isInternalRedirectPath,
+} from "./model/auth-redirect";
+export {
   type LoginFormValues,
   loginSchema,
   type SignupFormValues,

@@ -4,8 +4,10 @@ import { RootLayout } from "@/app/layouts/RootLayout";
 import { WorkspaceLayout } from "@/app/layouts/WorkspaceLayout";
 import { PATH_SEGMENTS } from "@/app/routes/paths";
 import { LandingPage } from "@/pages/LandingPage";
+import { LoginPage } from "@/pages/LoginPage";
 import { NotFoundPage } from "@/pages/NotFoundPage";
 import { ProjectPage } from "@/pages/ProjectPage";
+import { SignupPage } from "@/pages/SignupPage";
 import { WorkspacePage } from "@/pages/WorkspacePage";
 import { WorkspacesPage } from "@/pages/WorkspacesPage";
 
@@ -17,6 +19,15 @@ export const router = createBrowserRouter([
         index: true,
         Component: LandingPage,
       },
+      {
+        path: PATH_SEGMENTS.LOGIN,
+        Component: LoginPage,
+      },
+      {
+        path: PATH_SEGMENTS.SIGNUP,
+        Component: SignupPage,
+      },
+
       {
         path: PATH_SEGMENTS.WORKSPACES,
         children: [

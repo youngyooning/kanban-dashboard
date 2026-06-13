@@ -87,7 +87,7 @@ DECLARE
 BEGIN
 	normalized_email = lower(btrim(NEW.email));
 	IF normalized_email IS NULL OR normalized_email = '' THEN
-		RAISE EXCEPTION 'PROFILE_EMAIL_REQUIRED'
+		RAISE EXCEPTION 'PROFILE_EMAIL_REQUIRED';
 	END IF;
 	normalized_display_name := helpers.normalize_display_name(
 		coalesce(
