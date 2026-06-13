@@ -1,7 +1,7 @@
 import { type QueryClient, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-import type { AuthSessionUser, LoginInput, SignUpInput, SignUpResult } from "../model/auth-types";
-import { getCurrentSessionUser, login, logout, signUp } from "./auth-api";
+import type { AuthSessionUser, LoginInput, SignupInput, SignupResult } from "../model/auth-types";
+import { getCurrentSessionUser, login, logout, signup } from "./auth-api";
 
 export const authQueryKeys = {
   all: ["auth"] as const,
@@ -13,7 +13,7 @@ async function setAuthSessionUser(queryClient: QueryClient, user: AuthSessionUse
   queryClient.setQueryData(authQueryKeys.sessionUser(), user);
 }
 
-async function setAuthSessionUserFromSignUpResult(queryClient: QueryClient, result: SignUpResult) {
+async function setAuthSessionUserFromSignupResult(queryClient: QueryClient, result: SignupResult) {
   if (result.status === "authenticated") {
     await setAuthSessionUser(queryClient, result.user);
     return;
@@ -29,13 +29,13 @@ export function useCurrentSessionUserQuery() {
   });
 }
 
-export function useSignUpMutation() {
+export function useSignupMutation() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (input: SignUpInput) => signUp(input),
+    mutationFn: (input: SignupInput) => signup(input),
     onSuccess: async (result) => {
-      await setAuthSessionUserFromSignUpResult(queryClient, result);
+      await setAuthSessionUserFromSignupResult(queryClient, result);
     },
   });
 }

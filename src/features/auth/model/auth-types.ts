@@ -3,13 +3,13 @@ export interface AuthSessionUser {
   email: string;
 }
 
-export interface SignUpInput {
+export interface SignupInput {
   displayName: string;
   email: string;
   password: string;
 }
 
-export type SignUpResult =
+export type SignupResult =
   | {
       status: "authenticated";
       user: AuthSessionUser;

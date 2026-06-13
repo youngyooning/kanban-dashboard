@@ -6,13 +6,13 @@ import type {
   AuthSessionChangeEvent,
   AuthSessionUser,
   LoginInput,
-  SignUpInput,
-  SignUpResult,
+  SignupInput,
+  SignupResult,
 } from "../model/auth-types";
 import { mapSupabaseAuthError } from "./auth-errors";
 import { mapAuthSessionChangeEvent, mapAuthSessionUser } from "./auth-mappers";
 
-export async function signUp(input: SignUpInput): Promise<SignUpResult> {
+export async function signup(input: SignupInput): Promise<SignupResult> {
   const { data, error } = await supabase.auth.signUp({
     email: input.email,
     password: input.password,

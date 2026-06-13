@@ -19,7 +19,7 @@ const passwordSchema = z
   .regex(/[A-Z]/, "비밀번호에는 대문자가 포함되어야 합니다.")
   .regex(/[0-9]/, "비밀번호에는 숫자가 포함되어야 합니다.");
 
-export const signUpSchema = z
+export const signupSchema = z
   .object({
     email: emailSchema,
     password: passwordSchema,
@@ -40,5 +40,5 @@ export const loginSchema = z.object({
   password: z.string().min(1, "비밀번호를 입력해 주세요."),
 });
 
-export type SignUpFormValues = z.infer<typeof signUpSchema>;
+export type SignupFormValues = z.infer<typeof signupSchema>;
 export type LoginFormValues = z.infer<typeof loginSchema>;

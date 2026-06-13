@@ -1,11 +1,13 @@
 export { AuthDomainError, getAuthErrorMessage } from "./api/auth-errors";
-export { useLoginMutation, useLogoutMutation, useSignUpMutation } from "./api/auth-queries";
+export { useLoginMutation, useLogoutMutation, useSignupMutation } from "./api/auth-queries";
+export { LoginForm } from "./components/LoginForm";
+export { SignupForm } from "./components/SignupForm";
 export { useAuth } from "./hooks/use-auth";
 export {
   type LoginFormValues,
   loginSchema,
-  type SignUpFormValues,
-  signUpSchema,
+  type SignupFormValues,
+  signupSchema,
 } from "./model/auth-schema";
 export {
   type AuthErrorCode,

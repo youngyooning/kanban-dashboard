@@ -14,11 +14,11 @@ import { type LoginFormValues, loginSchema } from "../model/auth-schema";
 import { AuthFormErrorAlert } from "./AuthFormErrorAlert";
 
 interface LoginFormProps extends React.ComponentProps<"div"> {
-  signUpTo: React.ComponentProps<typeof Link>["to"];
+  signupTo: React.ComponentProps<typeof Link>["to"];
   onLoginSuccess: () => void;
 }
 
-export function LoginForm({ className, onLoginSuccess, signUpTo, ...props }: LoginFormProps) {
+export function LoginForm({ className, onLoginSuccess, signupTo, ...props }: LoginFormProps) {
   const loginMutation = useLoginMutation();
   const {
     formState: { errors },
@@ -92,7 +92,7 @@ export function LoginForm({ className, onLoginSuccess, signUpTo, ...props }: Log
                   로그인
                 </Button>
                 <FieldDescription className="text-center">
-                  계정이 없으신가요? <Link to={signUpTo}>회원가입</Link>
+                  계정이 없으신가요? <Link to={signupTo}>회원가입</Link>
                 </FieldDescription>
               </Field>
             </FieldGroup>

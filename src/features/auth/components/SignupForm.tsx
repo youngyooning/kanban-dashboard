@@ -11,23 +11,23 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/shared/ui/card";
 import { Field, FieldDescription, FieldError, FieldGroup, FieldLabel } from "@/shared/ui/field";
 import { Input } from "@/shared/ui/input";
 
-import { useSignUpMutation } from "../api/auth-queries";
-import { type SignUpFormValues, signUpSchema } from "../model/auth-schema";
+import { useSignupMutation } from "../api/auth-queries";
+import { type SignupFormValues, signupSchema } from "../model/auth-schema";
 import { AuthFormErrorAlert } from "./AuthFormErrorAlert";
 
-interface SignUpFormProps extends React.ComponentProps<"div"> {
+interface SignupFormProps extends React.ComponentProps<"div"> {
   loginTo: React.ComponentProps<typeof Link>["to"];
 }
 
-export function SignUpForm({ className, loginTo, ...props }: SignUpFormProps) {
-  const signUpMutation = useSignUpMutation();
+export function SignupForm({ className, loginTo, ...props }: SignupFormProps) {
+  const signupMutation = useSignupMutation();
   const [verificationEmail, setVerificationEmail] = useState<string | null>(null);
   const {
     formState: { errors },
     handleSubmit,
     register,
-  } = useForm<SignUpFormValues>({
-    resolver: zodResolver(signUpSchema),
+  } = useForm<SignupFormValues>({
+    resolver: zodResolver(signupSchema),
     defaultValues: {
       displayName: "",
       email: "",
@@ -36,11 +36,11 @@ export function SignUpForm({ className, loginTo, ...props }: SignUpFormProps) {
     },
   });
 
-  const isSubmitting = signUpMutation.isPending;
+  const isSubmitting = signupMutation.isPending;
   const isVerificationEmailSent = !!verificationEmail;
   const isFormDisabled = isSubmitting || isVerificationEmailSent;
 
-  const handleSignUpSubmit = handleSubmit(async (values) => {
+  const handleSignupSubmit = handleSubmit(async (values) => {
     const input = {
       displayName: values.displayName,
       email: values.email,
@@ -48,16 +48,16 @@ export function SignUpForm({ className, loginTo, ...props }: SignUpFormProps) {
     };
 
     setVerificationEmail(null);
-    signUpMutation.reset();
+    signupMutation.reset();
 
     try {
-      const result = await signUpMutation.mutateAsync(input);
+      const result = await signupMutation.mutateAsync(input);
 
       if (result.status === "emailVerificationSent") {
         setVerificationEmail(result.email);
       }
     } catch {
-      // Mutation error is rendered from signUpMutation.error.
+      // Mutation error is rendered from signupMutation.error.
     }
   });
 
@@ -70,13 +70,13 @@ export function SignUpForm({ className, loginTo, ...props }: SignUpFormProps) {
         <CardContent>
           <form
             onSubmit={(event) => {
-              void handleSignUpSubmit(event);
+              void handleSignupSubmit(event);
             }}
             noValidate
           >
             <FieldGroup>
-              {signUpMutation.error ? (
-                <AuthFormErrorAlert error={signUpMutation.error} title="회원가입에 실패했습니다." />
+              {signupMutation.error ? (
+                <AuthFormErrorAlert error={signupMutation.error} title="회원가입에 실패했습니다." />
               ) : null}
               {verificationEmail ? (
                 <Alert>
